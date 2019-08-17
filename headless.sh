@@ -25,7 +25,7 @@ OVMF=$VMDIR/firmware
 MOREARGS=()
 
 [[ "$HEADLESS" = "1" ]] && {
-    MOREARGS+=(-nographic -vnc :0 -k en-us)
+    MOREARGS+=(-vnc :0 -k en-us)
 }
 
 qemu-system-x86_64 \
@@ -49,4 +49,5 @@ qemu-system-x86_64 \
     -device ide-hd,bus=sata.3,drive=InstallMedia \
     -drive id=SystemDisk,if=none,file="${SYSTEM_DISK}" \
     -device ide-hd,bus=sata.4,drive=SystemDisk \
+    -daemonize \
     "${MOREARGS[@]}"
